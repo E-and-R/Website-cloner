@@ -8,9 +8,8 @@ A Program that downloads a website. By website we are referring to all website r
 2. Educational purpose : Download copyright free websites that inspire you and learn how they were built.
 
 
-##To run the program on terminal: 
-NB: We Recommend running the program on a python virtual environment.
-
+## To run the program on terminal: 
+NB: We highly Recommend running the program on a python virtual environment.
 
 1. Clone repository : gh repo clone E-and-R/Website-cloner
 2. Enter directory : cd Website-cloner
