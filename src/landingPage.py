@@ -4,22 +4,22 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from os.path import expanduser
 import time 
-from CMSConverter import startProceedings
+from WebsiteDownloader import startProceedings
 
 
-class welcomeGUI(QWidget):
+class landingPage(QWidget):
 
     def __init__(self, parent=None):
         QWidget.__init__(self, parent)
         
         
         self.setGeometry(10, 10, 430, 300)
-        self.setWindowTitle('CMS Converter')
+        self.setWindowTitle('Website Cloner')
 
-        title = QLabel('Convert CMS to Static website')
+        title = QLabel('Website cloner built with python')
         title.setAlignment(Qt.AlignCenter)
         
-        self.url = QLabel('Enter URL:')
+        self.url = QLabel('Enter website URL:')
         self.url_edit = QLineEdit()
         self.url_edit.setPlaceholderText('http://www.example.com')
         self.url_edit.setMaximumSize(300,50)
@@ -32,8 +32,7 @@ class welcomeGUI(QWidget):
         grid = QGridLayout() 
         grid.addWidget(self.url, 0, 0)  
         grid.addWidget(self.url_edit, 0, 1)  
-        grid.addWidget(self.allow_domains, 1, 0) 
-        grid.addWidget(self.allow_domains_edit, 1, 1) 
+        
         
         grid_widget = QWidget()
         grid_widget.setLayout(grid)
@@ -60,7 +59,7 @@ class welcomeGUI(QWidget):
         
 def main():
     app = QApplication(sys.argv)
-    abs_widget = welcomeGUI()
+    abs_widget = landingPage()
     abs_widget.show()
     sys.exit(app.exec_())
 

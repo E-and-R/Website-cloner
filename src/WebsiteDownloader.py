@@ -6,10 +6,10 @@ from bs4 import BeautifulSoup
 import re, os,time,requests, threading, sys
 from requests.exceptions import ConnectionError
 from urllib.parse import urljoin
-import progressGUI
+import progressScreen
 
 
-class CMSConverter:
+class WebsiteDownloader:
 
     def __init__(self,url):
         self.url = url
@@ -102,7 +102,7 @@ class CMSConverter:
                 
                 self.get_page(urljoin(start_url,file),start_url)
         
-        download_message = "Downloading content of : "+response.url
+        download_message = "Downloading content of page : "+response.url
         for link in tqdm(all_links,desc=download_message,file=progress_GUI.progress_output, bar_format='{l_bar}{bar:50}{r_bar}{bar:-10b}'):
             name = self.file_name(link)
             webcontent = self.localise(link,name,webcontent)
@@ -118,7 +118,7 @@ class CMSConverter:
         if(number_of_threads!=0):
             progress_GUI.update_num_active_pages(number_of_threads)
         else:
-            progress_GUI.progress_update("Done converting "+start_url+" to static website")
+            progress_GUI.progress_update("Finished Cloning Website "+start_url)
             progress_GUI.update_num_active_pages(number_of_threads)
             progress_GUI.stop_timer()
 
@@ -359,7 +359,7 @@ class individualPageThread(threading.Thread):
         threading.Thread.__init__(self)
         self.url = url
     def run(self):
-        CMSConverter(self.url)
+        WebsiteDownloader(self.url)
         
 
 
@@ -384,7 +384,7 @@ class startProceedings:
         allowed_domains = domains
         path = directory
 
-        progress_GUI = progressGUI.progressGUI()
+        progress_GUI = progressScreen.progressScreen()
         progress_GUI.show()
         progress_GUI.start_timer()
         # 1 thread since its just the main page being converted

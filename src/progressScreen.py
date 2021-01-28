@@ -8,13 +8,13 @@ import time
 
 
 
-class progressGUI(QWidget):
+class progressScreen(QWidget):
     def __init__(self, parent=None):
         QWidget.__init__(self, parent)
         
         self.setGeometry(10, 10, 800, 800)
         self.showMaximized() 
-        self.setWindowTitle('CMS Converter')
+        self.setWindowTitle('Website Cloner')
         
         self.status = QLabel('In Progress.....')
         self.status.setAlignment(Qt.AlignCenter)
@@ -26,16 +26,16 @@ class progressGUI(QWidget):
         time_label = QLabel("Time:")
         self.time= QLabel(self.timeQT.toString("hh:mm:ss"))
 
-        self.type_message = QLabel("Type of CMS: ")
+        self.type_message = QLabel("Generator Used To Build Site: ")
         self.type_name = QLabel('None')
         
-        pages_label = QLabel("Number of Pages converted:")
+        pages_label = QLabel("Number Of Website Pages Downloaded So Far :")
         self.num_pages = QLabel("0")
         
-        contents_label = QLabel("Number of Contents Downloaded:")
+        contents_label = QLabel("Number of Website Contents (CSS, JS, PDF's etc) Downloaded:")
         self.contents_num = QLabel("0")
         
-        status_title = QLabel('Number of pages being converted:')
+        status_title = QLabel('Number Of Website Pages Being Downloaded In Parallel:')
         self.num_status_pages = QLabel('0')
         
         self.progress_output = LogTextEdit(readOnly=True)
@@ -116,7 +116,7 @@ class progressGUI(QWidget):
         message = " , "
         message = message.join(cms_names)
         if message.strip() == "":
-            message = "Not a CMS website"
+            message = "No Generator Used To Build Site"
         self.type_name.setText(message)
         
     ''' Update the total number of pages executed in parallel '''   
